@@ -1,0 +1,38 @@
+# ── 민감정보: 절대 커밋 금지 ──────────────────
+.env
+.env.*
+!.env.onprem.example
+sync.env
+sync/sync.env
+
+# ── 사업 납품 문서 (내부 통계·기관 정보 포함) ──────
+/코드설명서.md
+/학습데이터_구축_결과서.md
+
+# ── 원천 데이터 / 산출물 (공공 문서·개인정보 포함) ──
+/data/
+/metadata/
+/exports/
+/bundle/
+/models/
+*.xlsx
+*.xls
+*.csv
+!permit_extractions_schema.csv
+!demo_data/metadata/*.csv
+*.tar
+*.dump
+*.zip
+
+# ── Python ────────────────────────────────────
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# ── 기타 ──────────────────────────────────────
+*.log
+.DS_Store
+Thumbs.db
+새 폴더/

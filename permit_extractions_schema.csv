@@ -1,0 +1,15 @@
+column_name,data_type,length,is_nullable,is_primary_key,is_foreign_key,description
+doc_id,varchar,64,NO,YES,YES,문서 ID
+org_nm,varchar,255,YES,NO,NO,발신 또는 기관명
+ask_org_nm,text,,YES,NO,NO,수신 또는 신청기관명
+addr,text,,YES,NO,NO,위치 또는 주소
+xtn,text,,YES,NO,NO,면적
+purps_cn,text,,YES,NO,NO,목적
+collection_volume,varchar,100,YES,NO,NO,준설량 또는 채취량
+permit_start_date,date,,YES,NO,NO,허가 시작일
+permit_end_date,date,,YES,NO,NO,허가 종료일
+amount,varchar,100,YES,NO,NO,금액
+confidence,double precision,,YES,NO,NO,추출 신뢰도
+source_text,text,,YES,NO,NO,추출 기준 원문
+created_at,timestamp,,YES,NO,NO,생성일시
+updated_at,timestamp,,YES,NO,NO,수정일시

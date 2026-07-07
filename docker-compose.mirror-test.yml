@@ -1,0 +1,43 @@
+services:
+  source-db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: vectordb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: source-password
+    ports:
+      - "15432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d vectordb"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  mirror-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: vectordb
+      POSTGRES_USER: cmyoon
+      POSTGRES_PASSWORD: target-password
+    ports:
+      - "15433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cmyoon -d vectordb"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  sync:
+    build:
+      context: .
+      dockerfile: sync/Dockerfile
+    image: odt-sync:latest
+    depends_on:
+      source-db:
+        condition: service_healthy
+      mirror-db:
+        condition: service_healthy
+    environment:
+      SOURCE_DATABASE_URL: postgresql://postgres:source-password@source-db:5432/vectordb
+      TARGET_DATABASE_URL: postgresql://cmyoon:target-password@mirror-db:5432/vectordb
+    profiles: ["manual"]

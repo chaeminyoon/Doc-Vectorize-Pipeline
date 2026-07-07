@@ -1,0 +1,4 @@
+﻿doc_type_raw,doc_id,doc_no,title,open_code_raw,receive_date,process_date,biz_cate,biz_sub_cate,biz_detail_cate,org_name,processor_dept_name
+P2025,DCT2025DEMO0001,해양항만과-1234,공유수면 점용·사용 허가 알림,DPBT1,2025-06-10,2025-06-12,공유수면,점용사용허가,신규,해양수산부,해양항만과
+P2025,DCT2025DEMO0002,해양항만과-1301,공유수면 점용·사용 변경허가 검토 보고,DPBT2,2025-05-02,2025-05-08,공유수면,점용사용허가,변경,해양시청,해양항만과
+R2025,DCT2025DEMO0003,항만개발과-567,공유수면 점용·사용(항로준설) 협의 요청,DPBT1,2025-06-02,2025-06-04,공유수면,협의,준설,해양지방해양수산청,항만개발과

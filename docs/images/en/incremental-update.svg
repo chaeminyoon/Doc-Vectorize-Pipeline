@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 311" font-family="'Cascadia Code','D2Coding','Consolas','Courier New',monospace" font-size="13.5">
+<rect width="880" height="311" rx="10" fill="#0d1117" stroke="#30363d"/>
+<circle cx="24" cy="22" r="6" fill="#ff5f57"/><circle cx="44" cy="22" r="6" fill="#febc2e"/><circle cx="64" cy="22" r="6" fill="#28c840"/>
+<text x="440.0" y="26" text-anchor="middle" fill="#8b949e" font-size="12">odt-vector-pipeline — incremental update (SHA-256)</text>
+<line x1="0" y1="40" x2="880" y2="40" stroke="#30363d"/>
+<text x="22" y="56" xml:space="preserve"><tspan fill="#8b949e"># re-run on the same data → every file hash matches, so everything is skipped</tspan></text>
+<text x="22" y="77" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">python main.py run -d demo_data/docs</tspan></text>
+<text x="22" y="98" xml:space="preserve"><tspan fill="#e6edf3">PipelineResult( total_files=</tspan><tspan fill="#79c0ff">3</tspan><tspan fill="#e6edf3">,  processed=</tspan><tspan fill="#79c0ff">0</tspan><tspan fill="#e6edf3">,  skipped=</tspan><tspan fill="#e3b341">3</tspan><tspan fill="#e6edf3">,  failed=</tspan><tspan fill="#79c0ff">0</tspan><tspan fill="#e6edf3"> )</tspan></text>
+<text x="22" y="119" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="140" xml:space="preserve"><tspan fill="#8b949e"># modify one document and re-run → only the changed file is re-parsed, re-embedded, re-stored</tspan></text>
+<text x="22" y="161" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">python main.py run -d demo_data/docs</tspan></text>
+<text x="22" y="182" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Processed DCT2025DEMO0003: 1 chunks (excluded boilerplate: 0)</tspan></text>
+<text x="22" y="203" xml:space="preserve"><tspan fill="#e6edf3">PipelineResult( total_files=</tspan><tspan fill="#79c0ff">3</tspan><tspan fill="#e6edf3">,  processed=</tspan><tspan fill="#3fb950">1</tspan><tspan fill="#e6edf3">,  skipped=</tspan><tspan fill="#e3b341">2</tspan><tspan fill="#e6edf3">,  failed=</tspan><tspan fill="#79c0ff">0</tspan><tspan fill="#e6edf3"> )</tspan></text>
+<text x="22" y="224" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="245" xml:space="preserve"><tspan fill="#8b949e">— documents.file_hash (SHA-256) decides what to update; chunks/attachments are</tspan></text>
+<text x="22" y="266" xml:space="preserve"><tspan fill="#8b949e">  replaced per document (delete-then-insert), so nothing accumulates as duplicates</tspan></text>
+</svg>

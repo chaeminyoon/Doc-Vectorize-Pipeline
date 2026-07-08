@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 542" font-family="'Cascadia Code','D2Coding','Consolas','Courier New',monospace" font-size="13.5">
+<rect width="880" height="542" rx="10" fill="#0d1117" stroke="#30363d"/>
+<circle cx="24" cy="22" r="6" fill="#ff5f57"/><circle cx="44" cy="22" r="6" fill="#febc2e"/><circle cx="64" cy="22" r="6" fill="#28c840"/>
+<text x="440.0" y="26" text-anchor="middle" fill="#8b949e" font-size="12">odt-vector-pipeline — ingest</text>
+<line x1="0" y1="40" x2="880" y2="40" stroke="#30363d"/>
+<text x="22" y="56" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">python main.py run --init-db -d demo_data/docs</tspan></text>
+<text x="22" y="77" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Loaded 3 metadata rows from 1 source files under metadata</tspan></text>
+<text x="22" y="98" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Metadata consistency check: data_doc_ids=3, metadata_doc_ids=3, matched=3</tspan></text>
+<text x="22" y="119" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Found 3 ODT files in demo_data/docs. Processing with 4 workers...</tspan></text>
+<text x="22" y="140" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Loaded BGE-M3 model with sentence-transformers: BAAI/bge-m3 (device=cuda)</tspan></text>
+<text x="22" y="161" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Processed DCT2025DEMO0003: 1 chunks (excluded boilerplate: 0)</tspan></text>
+<text x="22" y="182" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Processed DCT2025DEMO0001: 3 chunks (excluded boilerplate: 0)</tspan></text>
+<text x="22" y="203" xml:space="preserve"><tspan fill="#8b949e">INFO  </tspan><tspan fill="#8b949e">Processed DCT2025DEMO0002: 3 chunks (excluded boilerplate: 0)</tspan></text>
+<text x="22" y="224" xml:space="preserve"><tspan fill="#e6edf3">Processing (Parallel): 100%|</tspan><tspan fill="#3fb950">██████████</tspan><tspan fill="#e6edf3">| 3/3 [00:10&lt;00:00,  3.44s/it]</tspan></text>
+<text x="22" y="245" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="266" xml:space="preserve"><tspan fill="#30363d">==================================================</tspan></text>
+<text x="22" y="287" xml:space="preserve"><tspan fill="#3fb950">Pipeline Execution Complete</tspan></text>
+<text x="22" y="308" xml:space="preserve"><tspan fill="#30363d">==================================================</tspan></text>
+<text x="22" y="329" xml:space="preserve"><tspan fill="#e6edf3">PipelineResult(</tspan></text>
+<text x="22" y="350" xml:space="preserve"><tspan fill="#e6edf3">  total_files=</tspan><tspan fill="#79c0ff">3</tspan><tspan fill="#e6edf3">,  processed=</tspan><tspan fill="#3fb950">3</tspan><tspan fill="#e6edf3">,  skipped=</tspan><tspan fill="#79c0ff">0</tspan><tspan fill="#e6edf3">,  failed=</tspan><tspan fill="#79c0ff">0</tspan><tspan fill="#e6edf3">,</tspan></text>
+<text x="22" y="371" xml:space="preserve"><tspan fill="#e6edf3">  total_chunks=</tspan><tspan fill="#3fb950">7</tspan><tspan fill="#e6edf3">,  duration=</tspan><tspan fill="#e3b341">10.36s</tspan></text>
+<text x="22" y="392" xml:space="preserve"><tspan fill="#e6edf3">)</tspan></text>
+<text x="22" y="413" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="434" xml:space="preserve"><tspan fill="#e6edf3">Database Stats:</tspan></text>
+<text x="22" y="455" xml:space="preserve"><tspan fill="#e6edf3">  Documents: </tspan><tspan fill="#79c0ff">3</tspan></text>
+<text x="22" y="476" xml:space="preserve"><tspan fill="#e6edf3">  Chunks:    </tspan><tspan fill="#79c0ff">7</tspan></text>
+<text x="22" y="497" xml:space="preserve"><tspan fill="#e6edf3">  By type:   </tspan><tspan fill="#d2a8ff">{'text': 5, 'table': 2}</tspan></text>
+</svg>

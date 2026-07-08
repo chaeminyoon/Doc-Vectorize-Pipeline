@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 521" font-family="'Cascadia Code','D2Coding','Consolas','Courier New',monospace" font-size="13">
+<rect width="1150" height="521" rx="10" fill="#0d1117" stroke="#30363d"/>
+<circle cx="24" cy="22" r="6" fill="#ff5f57"/><circle cx="44" cy="22" r="6" fill="#febc2e"/><circle cx="64" cy="22" r="6" fill="#28c840"/>
+<text x="575.0" y="26" text-anchor="middle" fill="#8b949e" font-size="12">odt-vector-pipeline — what actually lands in each table</text>
+<line x1="0" y1="40" x2="1150" y2="40" stroke="#30363d"/>
+<text x="22" y="56" xml:space="preserve"><tspan fill="#79c0ff">vectordb=# </tspan><tspan fill="#e6edf3">SELECT doc_id, title, doc_no, dept_name, biz_full_path, file_hash FROM documents;</tspan></text>
+<text x="22" y="77" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="98" xml:space="preserve"><tspan fill="#79c0ff">     doc_id      |                 title                  |     doc_no      | dept_name  |         biz_full_path          | file_hash</tspan></text>
+<text x="22" y="119" xml:space="preserve"><tspan fill="#30363d">-----------------+----------------------------------------+-----------------+------------+--------------------------------+-----------</tspan></text>
+<text x="22" y="140" xml:space="preserve"><tspan fill="#e6edf3"> DCT2025DEMO0001 | 공유수면 점용·사용 허가 알림           | 해양항만과-1234 | 해양항만과 | 공유수면 &gt; 점용사용허가 &gt; 신규 | f151a3a7fc…</tspan></text>
+<text x="22" y="161" xml:space="preserve"><tspan fill="#e6edf3"> DCT2025DEMO0002 | 공유수면 점용·사용 변경허가 검토 보고  | 해양항만과-1301 | 해양항만과 | 공유수면 &gt; 점용사용허가 &gt; 변경 | ac1e9b5a51…</tspan></text>
+<text x="22" y="182" xml:space="preserve"><tspan fill="#e6edf3"> DCT2025DEMO0003 | 공유수면 점용·사용(항로준설) 협의 요청 | 항만개발과-567  | 항만개발과 | 공유수면 &gt; 협의 &gt; 준설         | b9c88c365c…</tspan></text>
+<text x="22" y="203" xml:space="preserve"><tspan fill="#8b949e">(3 rows)  </tspan><tspan fill="#8b949e">— parsed ODT values merged with spreadsheet metadata; file_hash drives incremental updates</tspan></text>
+<text x="22" y="224" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="245" xml:space="preserve"><tspan fill="#79c0ff">vectordb=# </tspan><tspan fill="#e6edf3">SELECT chunk_id, chunk_type, text, embedding, vector_dims(embedding) FROM document_chunks;</tspan></text>
+<text x="22" y="266" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="287" xml:space="preserve"><tspan fill="#79c0ff">        chunk_id        | chunk_type |                        text                        |            embedding            | dims</tspan></text>
+<text x="22" y="308" xml:space="preserve"><tspan fill="#30363d">------------------------+------------+----------------------------------------------------+---------------------------------+------</tspan></text>
+<text x="22" y="329" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0001-000 | </tspan><tspan fill="#3fb950">text</tspan><tspan fill="#e6edf3">       | 해양수산부 수신 ㈜한빛해양개발 대표이사 (경유) 제… | [-0.03262366,-0.02412137,-0.04… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="350" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0001-001 | </tspan><tspan fill="#d2a8ff">table</tspan><tspan fill="#e6edf3">      | | 신청인 | 위 치 | 면 적 | 목 적 | 허가…           | [-0.039592538,-0.019495096,-0.… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="371" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0001-002 | </tspan><tspan fill="#3fb950">text</tspan><tspan fill="#e6edf3">       | 2. 허가조건을 준수하시기 바라며, 위반 시 허가가…   | [0.014362372,0.013877791,-0.02… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="392" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0002-000 | </tspan><tspan fill="#3fb950">text</tspan><tspan fill="#e6edf3">       | 해양시청 수신 내부결재 제목 공유수면 점용·사용 변… | [-0.011798757,0.022693457,-0.0… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="413" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0002-001 | </tspan><tspan fill="#d2a8ff">table</tspan><tspan fill="#e6edf3">      | | 구 분 | 변경 전 | 변경 후 | | --- …              | [-0.016470628,-0.028672848,-0.… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="434" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0002-002 | </tspan><tspan fill="#3fb950">text</tspan><tspan fill="#e6edf3">       | 2. 검토 결과 인근 어업권과의 상충이 없어 변경허…   | [0.009695943,-0.012383877,-0.0… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="455" xml:space="preserve"><tspan fill="#e6edf3"> CH-DCT2025DEMO0003-000 | </tspan><tspan fill="#3fb950">text</tspan><tspan fill="#e6edf3">       | 해양지방해양수산청 수신 해양시장 제목 공유수면 점… | [-0.035026927,-0.012164406,-0.… | </tspan><tspan fill="#e3b341">1024</tspan></text>
+<text x="22" y="476" xml:space="preserve"><tspan fill="#8b949e">(7 rows)  </tspan><tspan fill="#8b949e">— tables stay whole as 'table' chunks; embeddings stored in a pgvector vector(1024) column</tspan></text>
+</svg>

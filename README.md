@@ -24,38 +24,38 @@ Korean output since the pipeline processes Korean records.
 
 **① Ingestion** — ODT parsing → chunking (tables kept whole) → BGE-M3 embedding → pgvector
 
-![pipeline run](docs/images/pipeline-run.svg)
+![pipeline run](docs/images/en/pipeline-run.svg)
 
 **② Search** — vector search by default; automatically switches to hybrid search when a
 company/organization name is detected in the query
 
-![semantic search](docs/images/hybrid-search.svg)
+![semantic search](docs/images/en/hybrid-search.svg)
 
 **③ Permit field extraction** — nine fields extracted from body text and tables by rules,
 stored with a confidence score
 
-![permit extraction](docs/images/permit-extraction.svg)
+![permit extraction](docs/images/en/permit-extraction.svg)
 
 **④ Attachment collection + HWP embedded image extraction** — images pulled from the
 `BinData` streams of attached HWP (OLE) files
 
-![hwp image extraction](docs/images/hwp-image-extraction.svg)
+![hwp image extraction](docs/images/en/hwp-image-extraction.svg)
 
 **⑤ Output tables** — documents, chunks, attachments, and permit extractions land in
 four tables
 
-![db tables](docs/images/db-tables.svg)
+![db tables](docs/images/en/db-tables.svg)
 
 **⑥ What actually lands in each table** — `documents` rows merge parsed values with
 spreadsheet metadata; `document_chunks` stores the chunk text alongside its
 1024-dimension pgvector embedding
 
-![table rows](docs/images/table-rows.svg)
+![table rows](docs/images/en/table-rows.svg)
 
 **⑦ Incremental ingestion** — on re-runs, unchanged documents are skipped by hash;
 only modified documents are re-ingested
 
-![incremental update](docs/images/incremental-update.svg)
+![incremental update](docs/images/en/incremental-update.svg)
 
 ## Features
 

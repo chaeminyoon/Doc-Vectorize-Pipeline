@@ -37,6 +37,15 @@
 
 ![db tables](docs/images/db-tables.svg)
 
+**⑥ 각 테이블에 실제로 쌓이는 데이터** — `documents`는 파싱값+메타데이터 병합 행,
+`document_chunks`는 청크 원문과 1024차원 pgvector 임베딩이 그대로 저장됩니다
+
+![table rows](docs/images/table-rows.svg)
+
+**⑦ 증분 적재** — 재실행 시 해시가 같은 문서는 skip, 내용이 바뀐 문서만 다시 쌓입니다
+
+![incremental update](docs/images/incremental-update.svg)
+
 ## 주요 기능
 
 - **ODT 공문 파싱** — lxml 기반 `content.xml` 파싱, 표를 Markdown으로 변환해 구조 보존, 기안자/부서/결재일 자동 추출

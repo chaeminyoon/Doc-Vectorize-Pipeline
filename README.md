@@ -1,4 +1,6 @@
-**English** | [한국어](README.ko.md)
+<p align="center">
+  <a href="README.md">English</a> | <a href="README.ko.md">한국어</a>
+</p>
 
 # Document-to-Vector Search Pipeline for Korean Government Records (ODT → pgvector)
 

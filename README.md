@@ -14,7 +14,7 @@
 
 ## 데모 실행 결과
 
-리포지토리에 포함된 [가상 데모 공문 3건](demo_data/)을 실제로 적재·검색·추출한 결과입니다.
+리포지토리에 포함된 [가상 데모 공문 3건](demo_data/)(첨부 PDF·HWP 포함)을 실제로 적재·검색·추출한 결과입니다.
 (문서 내 기관·기업·지명·인명은 모두 가상입니다)
 
 **① 적재** — ODT 파싱 → 청킹(표는 통째로) → BGE-M3 임베딩 → pgvector 적재
@@ -29,6 +29,14 @@
 
 ![permit extraction](docs/images/permit-extraction.svg)
 
+**④ 첨부파일 수집 + HWP 내장 이미지 추출** — 첨부 HWP(OLE)의 `BinData` 스트림에서 이미지를 추출
+
+![hwp image extraction](docs/images/hwp-image-extraction.svg)
+
+**⑤ 산출 테이블** — 문서·청크·첨부·허가정보 4개 테이블에 최종 적재
+
+![db tables](docs/images/db-tables.svg)
+
 ## 주요 기능
 
 - **ODT 공문 파싱** — lxml 기반 `content.xml` 파싱, 표를 Markdown으로 변환해 구조 보존, 기안자/부서/결재일 자동 추출
@@ -36,6 +44,8 @@
 - **BGE-M3 임베딩** — 1024차원 dense 벡터, 오프라인 로컬 모델 로딩, 스레드 안전 지연 로딩
 - **pgvector 저장 + 하이브리드 검색** — IVFFlat 코사인 인덱스, 쿼리에서 기관·회사명 감지 시 벡터+키워드 하이브리드 검색 자동 전환
 - **규칙 기반 허가정보 추출** — 공문 본문/표에서 허가기관·피허가자·위치·면적·목적·허가기간·금액 등 9개 필드를 추출해 별도 테이블 적재 (신뢰도 점수 포함)
+- **첨부파일 수집** — ODT와 같은 폴더의 PDF/HWP를 자동 수집해 `attachments` 테이블에 기록, 본문 PDF(`is_main_pdf`)와 첨부 순서(`file_order`) 식별
+- **HWP 내장 이미지 추출** — 첨부 HWP(OLE 복합문서)의 `BinData` 스트림을 바이너리 파싱해 내장 이미지를 별도 디렉터리로 추출 (매직바이트 검증, deflate 해제, 크기 상한 방어)
 - **증분 업데이트** — 파일 SHA-256 해시 비교로 변경된 문서만 재처리
 - **미러 동기화** — pgvector가 없는 일반 PostgreSQL 서버로 결과를 복사 (임베딩은 `double precision[]` 배열로 저장)
 - **폐쇄망 배포** — 인터넷/pip 없는 서버를 위한 Docker 이미지 번들링 스크립트 제공
@@ -77,6 +87,50 @@ flowchart LR
     C -->|없음| E["similarity_search<br/>코사인 유사도 (IVFFlat)"]
     D --> F["청크 + 문서 메타데이터 반환"]
     E --> F
+```
+
+## 데이터 모델
+
+문서 1건이 **청크(N) · 첨부파일(N) · 허가정보(1)** 로 분해되어 4개 테이블에 적재됩니다.
+
+```mermaid
+erDiagram
+    documents ||--o{ document_chunks : "1:N (cascade)"
+    documents ||--o{ attachments : "1:N (cascade)"
+    documents ||--o| permit_extractions : "1:1"
+
+    documents {
+        varchar doc_id PK "문서 ID"
+        text title "제목"
+        varchar dept_name "부서"
+        date report_date "결재일"
+        varchar biz_full_path "분류 경로"
+        varchar file_hash "SHA-256 (증분 판단)"
+    }
+    document_chunks {
+        varchar chunk_id PK
+        varchar doc_id FK
+        varchar chunk_type "text | table"
+        text text "청크 본문"
+        vector embedding "vector(1024) - IVFFlat"
+    }
+    attachments {
+        int attachment_id PK
+        varchar doc_id FK
+        varchar file_name "PDF / HWP"
+        int file_order "첨부 순서"
+        bool is_main_pdf "본문 PDF 여부"
+    }
+    permit_extractions {
+        varchar doc_id PK "FK, 1:1"
+        varchar org_nm "허가기관"
+        text ask_org_nm "피허가자"
+        text addr "위치"
+        text xtn "면적"
+        date permit_start_date "허가 시작일"
+        date permit_end_date "허가 종료일"
+        float confidence "추출 신뢰도"
+    }
 ```
 
 ## 기술 스택
@@ -170,6 +224,9 @@ export DATABASE_URL=postgresql://postgres:demo@localhost:15499/vectordb
 export METADATA_DOC_LIST=./demo_data/metadata
 python main.py run --init-db -d demo_data/docs
 python main.py search "항로 준설 협의" --top-k 3
+
+# 첨부 HWP 내장 이미지만 추출 (벡터 파이프라인 생략)
+python main.py run -d demo_data/docs --extract-hwp-images --skip-pipeline
 ```
 
 ### 기본 명령

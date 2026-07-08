@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 437" font-family="'Cascadia Code','D2Coding','Consolas','Courier New',monospace" font-size="13.5">
+<rect width="880" height="437" rx="10" fill="#0d1117" stroke="#30363d"/>
+<circle cx="24" cy="22" r="6" fill="#ff5f57"/><circle cx="44" cy="22" r="6" fill="#febc2e"/><circle cx="64" cy="22" r="6" fill="#28c840"/>
+<text x="440.0" y="26" text-anchor="middle" fill="#8b949e" font-size="12">odt-vector-pipeline — output tables (PostgreSQL + pgvector)</text>
+<line x1="0" y1="40" x2="880" y2="40" stroke="#30363d"/>
+<text x="22" y="56" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">psql -d vectordb</tspan></text>
+<text x="22" y="77" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="98" xml:space="preserve"><tspan fill="#79c0ff">        tbl         | count |  내용</tspan></text>
+<text x="22" y="119" xml:space="preserve"><tspan fill="#30363d">--------------------+-------+--------------------------------------------</tspan></text>
+<text x="22" y="140" xml:space="preserve"><tspan fill="#e6edf3"> documents          |     </tspan><tspan fill="#3fb950">3</tspan><tspan fill="#8b949e">  |  문서 메타데이터 (제목·부서·분류·file_hash)</tspan></text>
+<text x="22" y="161" xml:space="preserve"><tspan fill="#e6edf3"> document_chunks    |     </tspan><tspan fill="#3fb950">7</tspan><tspan fill="#8b949e">  |  청크 + embedding vector(1024)</tspan></text>
+<text x="22" y="182" xml:space="preserve"><tspan fill="#e6edf3"> attachments        |     </tspan><tspan fill="#3fb950">3</tspan><tspan fill="#8b949e">  |  첨부파일 목록 (본문 PDF 식별 포함)</tspan></text>
+<text x="22" y="203" xml:space="preserve"><tspan fill="#e6edf3"> permit_extractions |     </tspan><tspan fill="#3fb950">3</tspan><tspan fill="#8b949e">  |  허가정보 9필드 + confidence</tspan></text>
+<text x="22" y="224" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="245" xml:space="preserve"><tspan fill="#79c0ff">vectordb=# </tspan><tspan fill="#e6edf3">SELECT doc_id, file_name, file_order, is_main_pdf FROM attachments;</tspan></text>
+<text x="22" y="266" xml:space="preserve"><tspan fill="#e6edf3"></tspan></text>
+<text x="22" y="287" xml:space="preserve"><tspan fill="#79c0ff">     doc_id      |              file_name               | file_order | is_main_pdf</tspan></text>
+<text x="22" y="308" xml:space="preserve"><tspan fill="#30363d">-----------------+--------------------------------------+------------+------------</tspan></text>
+<text x="22" y="329" xml:space="preserve"><tspan fill="#e6edf3"> DCT2025DEMO0001 | 001_공유수면 점용·사용 허가 알림.pdf |          0 | </tspan><tspan fill="#3fb950">t</tspan></text>
+<text x="22" y="350" xml:space="preserve"><tspan fill="#e6edf3"> DCT2025DEMO0001 | 002_허가조건 및 유의사항.pdf         |          1 | f</tspan></text>
+<text x="22" y="371" xml:space="preserve"><tspan fill="#e6edf3"> DCT2025DEMO0001 | 003_위치도 및 현장사진.hwp           |          2 | f</tspan></text>
+<text x="22" y="392" xml:space="preserve"><tspan fill="#8b949e">(3 rows)  </tspan><tspan fill="#8b949e">— ODT와 같은 폴더의 PDF/HWP를 수집, 동일 stem PDF는 본문으로 식별</tspan></text>
+</svg>

@@ -1,6 +1,6 @@
-# Document-to-Vector Search Pipeline for Korean Government Records (ODT → pgvector)
-
 **English** | [한국어](README.ko.md)
+
+# Document-to-Vector Search Pipeline for Korean Government Records (ODT → pgvector)
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%20%2B%20pgvector-4169E1?logo=postgresql&logoColor=white)
